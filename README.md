@@ -1,5 +1,7 @@
 # Hello, Twilio!
 
+A simple application for sending text messages with Scala & [Twilio](http://twilio.com)
+
 ## Set up
 
 Sign up for a Twilio.com account if you don't already have one: [twilio.com/console](http://www.twilio.com/console)
