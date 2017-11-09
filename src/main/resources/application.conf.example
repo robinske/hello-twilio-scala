@@ -1,0 +1,7 @@
+// these values can be found in twilio.com/console
+
+twilio {
+  account_sid = "your account sid"
+  auth_token = "your auth token"
+  from_number = "+15551234567" // your twilio number
+}
