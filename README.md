@@ -16,7 +16,7 @@ Edit your application.conf and add your account credentials, you can find those 
 
 ## Run
 
-Run using sbt as seen below:
+Run using [sbt](http://www.scala-sbt.org/) as seen below:
 
 ![sbt-run.png](sbt-run.png)
 
