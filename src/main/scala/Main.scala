@@ -2,9 +2,11 @@ package me.krobinson.twilio
 
 import com.twilio.Twilio
 import com.twilio.`type`.PhoneNumber
-import com.twilio.rest.api.v2010.account.Message
 import com.typesafe.config.{Config, ConfigFactory}
+import com.twilio.rest.api.v2010.account.Message
+
 import scala.io.StdIn.readLine
+import scala.util.{Failure, Success, Try}
 
 
 object Main extends App {
@@ -17,7 +19,7 @@ object Main extends App {
   }
 
   val conf = ConfigFactory.load()
-  initializeTwilio(conf: Config)
+  initializeTwilio(conf)
 
   val from = new PhoneNumber(conf.getString("twilio.from_number"))
   val to = new PhoneNumber(readLine("Who are we texting? "))
@@ -30,7 +32,9 @@ object Main extends App {
     case m              => m
   }
 
-  val message = Message.creator(to, from, body).create()
-  println(s"Message sent to $to with ID ${message.getSid}")
+  Try(Message.creator(to, from, body).create()) match {
+    case Success(m) => println(s"Message sent to $to with ID ${m.getSid}")
+    case Failure(e) => println(s"Encountered an exception: \n${e.getMessage}")
+  }
 
 }
